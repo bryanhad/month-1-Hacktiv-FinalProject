@@ -85,50 +85,6 @@ body{
     align-items: center;
 }
 
-.logo{
-    height: 100px;
-    width: 100px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
-
-.logo-left {
-    height: 70%;
-    width: 30%;
-    border-radius: 20px 0px 0px 20px;
-    border: 6px solid red;
-    display: flex;
-    justify-content: center;
-}
-
-.logo-right {
-    height: 70%;
-    width: 30%;
-    border-radius: 0px 20px 20px 0px;
-    border: 6px solid red;
-    background-color: red;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-}
-
-.logo-circle-red{
-    width: 20px;
-    height: 20px;
-    border-radius: 100%;
-    background-color: red;
-    margin-top: 10px;
-}
-
-.logo-circle-white{
-    width: 20px;
-    height: 20px;
-    border-radius: 100%;
-    background-color: white;
-    margin-bottom: 10px;
-}
-
 /* LEFT CONTROLLER */
 
 .left-control{
