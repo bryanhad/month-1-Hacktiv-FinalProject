@@ -259,3 +259,20 @@ body{
     background-color: rgb(49, 49, 49);
 }
 
+
+/* usertag dan userscore */
+
+.userscore {
+    position: absolute; top: 25%; right: 30px; transform: translateY(-50%); width: 200px; height: 50px; background-color: white; border: 1px solid black; z-index: 10;
+}
+
+.usertag {
+    position: absolute; top: 25%; left: 30px; transform: translateY(-50%); width: 200px; height: 50px; background-color: white; border: 1px solid black; z-index: 10; font-size: 2;
+}
+
+.usertag p {
+    font-size: 20px;
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
