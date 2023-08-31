@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.fade-in {
+    animation: fadeIn 500ms ease-in;
+}
+
+@keyframes fadeIn {  
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+ }
+
+ .world {
+    background-color: red;
+    overflow: hidden;
+    position: relative;
+}
+
+.score {
+    position: absolute;
+    top: 1vmin;
+    right: 1vmin;
+    
+    font-size: 5vmin;
+    color: green;
+    font-family: 'VT323', monospace;
+}
+
+.start-screen {
+    position: absolute;
+    font-size: 5vmin;
+    color: green;
+    font-family: 'VT323', monospace;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.hide {
+    display: none;
+}
+
+.ground {
+    --left: 0;
+
+    position: absolute;
+    width: 130%;
+    bottom: 0;
+    left: calc(var(--left) * 1%);
+}
+
+.binary-ground {
+    --left: 0;
+
+    color: green;
+    font-family: 'VT323', monospace;
+    font-size: 1vw;
+    overflow-x: hidden;
+    position: absolute;
+    bottom: 0;
+    left: calc(var(--left) * 1%);
+}
+
+.dino {
+    --bottom: 0;
+    position: absolute;
+    left: 1%;
+    height: 30%;
+    bottom: calc(var(--bottom) * 1%);
+    border-radius: 70px;
+}
+
+.cactus {
+    --left: 0;
+    position: absolute;
+    left: calc(var(--left) * 1%);
+    height: 30%;
+    bottom: 0;
+}
