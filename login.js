@@ -1,7 +1,6 @@
 function handleLogin() {
     let username=document.getElementById("username").value;
     localStorage.setItem('user', username);
-console.log("sukses");
 }
 
 // userNameInpput.addEventListener('input', (e) => {
