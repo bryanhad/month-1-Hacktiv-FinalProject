@@ -1,17 +1,24 @@
-import { setGround, updateGround } from "./ground.js"
+import { moveSprites } from "./sprite_SET_and_UPDATE.js"
 import { setDino, updateDino, getKotakDino, setDinoLose } from "./dino.js"
 import { setCactus, updateCactus, getKotakCactuses } from "./cactus.js"
-import { setBinaryGround, updateBinaryGround } from "./lib/binaryString.js"
+import { addHistory } from "./history.js"
 
+const USERNAME = 'BAMBANG'
 const WORLD_WIDTH = 100 //ratio of world width
-const WORLD_HEIGHT = 30 //ratio of world height
+const WORLD_HEIGHT = 35   //ratio of world height
 const SPEED_SCALE_INCREASE = 0.00001 //tingkat kecepatan si ground bakal makin cepet
 
+const worldContainerElem = document.querySelector("[data-world-container]")
 const worldElem = document.querySelector("[data-world]")
 const scoreElem = document.querySelector("[data-score]")
 const startScreenElem = document.querySelector("[data-start-screen]")
+const usernameElem = document.querySelector('[data-username]')
 
 setPixelToWorldScale()
+moveSprites('SET', '[data-ground]')
+moveSprites('SET', '[data-forest]')
+moveSprites('SET', '[data-mountain]')
+usernameElem.innerHTML = localStorage.getItem('username')
 
 window.addEventListener("resize", setPixelToWorldScale)
 document.addEventListener("keydown", handleStart, { once: true })
@@ -28,8 +35,10 @@ function update(time) {
         return
     }
     const delta = time - lastTime //biar tau selisih berapa lama sih sih framerate dari monitor (berapa miliSecond)
-    updateGround(delta, speedScaleDifficulty)
-    // updateBinaryGround(delta, speedScaleDifficulty)
+    // updateGround(delta, speedScaleDifficulty)
+    moveSprites('UPDATE', '[data-ground]', 0.05, delta, speedScaleDifficulty)
+    moveSprites('UPDATE', '[data-forest]', 0.032, delta, speedScaleDifficulty)
+    moveSprites('UPDATE', '[data-mountain]', 0.009, delta, speedScaleDifficulty)
     updateDino(delta, speedScaleDifficulty)
     updateCactus(delta, speedScaleDifficulty)
     updateSpeedScale(delta)
@@ -54,8 +63,6 @@ function handleStart() {
     speedScaleDifficulty = 1
     score = 0
 
-    setGround()
-    // setBinaryGround()
     setDino()
     setCactus()
     startScreenElem.classList.add("hide")
@@ -63,11 +70,12 @@ function handleStart() {
 }
 
 function setPixelToWorldScale() {
+    const worldContainerDimention = worldContainerElem.getBoundingClientRect()
     let worldToPixelScale
-    if (window.innerWidth / window.innerHeight < WORLD_WIDTH / WORLD_HEIGHT) {
-        worldToPixelScale = window.innerWidth / WORLD_WIDTH
+    if (worldContainerDimention.height / worldContainerDimention.width < WORLD_WIDTH / WORLD_HEIGHT) {
+        worldToPixelScale = worldContainerDimention.width / WORLD_WIDTH
     } else {
-        worldToPixelScale = window.innerHeight / WORLD_HEIGHT
+        worldToPixelScale = worldContainerDimention.height / WORLD_HEIGHT
     }
 
     worldElem.style.width = `${WORLD_WIDTH * worldToPixelScale}px`
@@ -92,12 +100,10 @@ function nabrakGaSih(kotakCactus, kotakDino) { //cek collision antara cactus den
 
 function handleLose() {
     setDinoLose()
+    addHistory(Math.floor(score))
 
     setTimeout(() => {
         document.addEventListener('keydown', handleStart, {once: true})
         startScreenElem.classList.remove('hide')
     }, 200);
 }
-
-// const binaryGroundElem = document.querySelector('[data-binary-ground]')
-// binaryGroundElem.innerText = setBinaryGround()

@@ -4,6 +4,7 @@ const dinoElem = document.querySelector('[data-dino]')
 const JUMP_SPEED = 0.45
 const GRAVITY = 0.0015
 const DINO_RUNNING_FRAME_COUNT = 3 //jumlah sprite si dino untuk berjalan
+const DINO_BOTTOM_LOCATION = 10
 // const DINO_JUMPING_FRAME_COUNT = 3 //jumlah sprite si dino untuk berjalan
 const FRAME_TIME = 100 //tiap sprite si dino akan muncul per 100ms, tiap detik ya kegant 10x
 
@@ -18,7 +19,10 @@ export function setDino() {
     currentFrameTime = 0
     kecepatanY = 0
 
-    setCustomProperty(dinoElem, '--bottom' , 0)
+    setCustomProperty(dinoElem, '--bottom' , DINO_BOTTOM_LOCATION)
+    setTimeout(() => {
+        dinoElem.style.borderRadius = '70px'
+    }, 200);
     document.removeEventListener('keydown', onJump) //untuk reset pas reset game, biar incase sebelumnya udh ada event listenernya, rmeove dulu, baru add lagi
     document.addEventListener('keydown', onJump)
 }
@@ -30,7 +34,7 @@ export function updateDino(delta, speedScaleDifficulty) {
 
 function handleRun(delta, speedScaleDifficulty) {
     if (isJumping) {
-        dinoElem.src = '../img/dino-stationary.png'
+        dinoElem.src = '../img/fox/stationary.png'
         return
     }
 
@@ -38,7 +42,7 @@ function handleRun(delta, speedScaleDifficulty) {
         dinoFrame = (dinoFrame + 1) % DINO_RUNNING_FRAME_COUNT //ini biar framenya ngelooping! 
         // misal sekarang lagi di frame 15, nah kita misal punya total frame itu 10, 
         // nah 15 modulo 10 (frame count) ya kan 5, jadi skrng kita make sprite ke 5
-        dinoElem.src = `../img/fox/fox-run-${dinoFrame}.png`
+        dinoElem.src = `../img/fox/run-${dinoFrame}.png`
         currentFrameTime -= FRAME_TIME
     }
     
@@ -48,17 +52,16 @@ function handleRun(delta, speedScaleDifficulty) {
 function handleJump(delta) {
     if (!isJumping) return 
 
-    // dinoElem.src = '../img/fox/fox-jump-1.png'
     switch(true) {
-        case kecepatanY >= 0.15: dinoElem.src = '../img/fox/fox-jump-0.png'; break
-        case kecepatanY >= -0.15: dinoElem.src = '../img/fox/fox-jump-1.png'; break
-        default: dinoElem.src = '../img/fox/fox-jump-2.png'; break
+        case kecepatanY >= 0.15: dinoElem.src = '../img/fox/jump-0.png'; break
+        case kecepatanY >= -0.15: dinoElem.src = '../img/fox/jump-1.png'; break
+        default: dinoElem.src = '../img/fox/jump-2.png'; break
     }
 
     incrementCustomProperty(dinoElem, '--bottom', kecepatanY * delta)
 
-    if (getCustomProperty(dinoElem, '--bottom') <= 0) { //kalo prop css 'bottom' udah udah 0 kebawah, maka jgn turun lagi lahh
-        setCustomProperty(dinoElem, '--bottom', 0)
+    if (getCustomProperty(dinoElem, '--bottom') <= DINO_BOTTOM_LOCATION) { //kalo prop css 'bottom' udah udah 0 kebawah, maka jgn turun lagi lahh
+        setCustomProperty(dinoElem, '--bottom', DINO_BOTTOM_LOCATION)
         isJumping = false
     }
 
@@ -76,5 +79,6 @@ export function getKotakDino() {
 }
 
 export function setDinoLose() {
-    dinoElem.src = '../img/dino-lose.png'
+    dinoElem.src = '../img/fox/dead.png'
+    dinoElem.style.borderRadius = '0px'
 }

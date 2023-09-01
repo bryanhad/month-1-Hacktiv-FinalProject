@@ -5,11 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FOXYRUN</title>
     <link rel="stylesheet" href="../../dist/output.css">
-    <script src="../js/handleLogin.js" type="module" defer></script>
-    <script src="../js/mainScript.js" type="module" defer></script>
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
+    
+    <script src="../js/playGround.js" type="module"></script>
+    <script src="../js/mainScript.js" type="module" defer></script> 
 </head>
-<body class="w-full h-screen flex flex-col items-center ">
+<body class="w-full h-screen flex flex-col items-center relative">
+        <img src="../img/backGround/BG_sky_with_mountain.png" class="absolute z-[1] w-full h-full object-cover main-game-background opacity-60" alt="">
+    <div class="w-full absolute h-full overflow-hidden" data-body></div>
 
     <!-- <div data-modal class="fixed w-[60%] min-w-[300px] h-[10vh] border-4 border-slate-500 rounded-xl top-[30px] opacity-0 justify-center items-center gap-4 ">
             <div class="text-red-500 font-extrabold text-[7vw] sm:text-[30px] flex items-center">
@@ -20,20 +23,49 @@
             </h1>
     </div> -->
 
-    <main class="flex-[1] w-full max-w-[1240px] flex items-center justify-center bg-green-300">
+    <main class="flex-[1] w-full max-w-[1240px] flex items-center justify-center relative z-[2]">
+        <div class="flex gap-2 absolute top-20 left-10 p-4 bg-white rounded-xl">
+            <h1 class="">
+                username:
+            </h1>
+            <span data-username></span>
+        </div>
 
-        <section class="w-[80%] flex flex-col items-center bg-slate-500 py-12 rounded-xl gap-12">
-            <div class="world" data-world>
-                <div class="score" data-score>0</div>
-                <div class="start-screen" data-start-screen>Press any key to start</div>
-                <img src="../img/backGround/BG_MOUNTAIN_AND_TREES.png" class="ground" data-ground>
-                <img src="../img/backGround/BG_Pixel_Mountain.png" class="ground" data-ground>  
-                <!-- <p class="binary-ground" data-binary-ground></p>
-                <p class="binary-ground" data-binary-ground></p> -->
-                <img src="../img/fox/fox-stationary.png" class="dino" data-dino>
-                <div class="test"></div>
+            <div class="bg-white p-4 rounded-xl absolute right-10 bottom-[4%] min-w-[500px] flex flex-col items-center gap-4" data-history-container>
+                <h1 class="text-center">HISTORY</h1>
+                <div class="flex w-full flex-col text-center max-h-[100px] overflow-y-scroll"  data-history>No History</div>
             </div>
-        </section>
+        
+        <div class="w-[78%] py-2 flex flex-col items-center rounded-xl relative bg-slate-500">
+            <section data-world-container class="w-[75 %] flex flex-col items-center rounded-xl gap-12 relative">
+                <div class="world h-[300px] w-full" data-world>
+                    <div class="score" data-score>0</div>
+    
+                    <img src="../img/backGround/BG_sky_with_mountain.png" class="absolute z-[4] w-full h-full object-cover" alt=""> 
+    
+                    <div class="start-screen" data-start-screen>Press any key to start</div>
+                    <img src="../img/backGround/ground_single.png" class="ground" alt="groundSprite" data-ground>
+                    <img src="../img/backGround/ground_single.png" class="ground" alt="groundSprite" data-ground>
+                    <img src ="../img/backGround/ground_single.png" class="ground" alt="groundSprite" data-ground>
+                    <img src ="../img/backGround/ground_single.png" class="ground" alt="groundSprite" data-ground>
+                    <img src ="../img/backGround/ground_single.png" class="ground" alt="groundSprite" data-ground>
+    
+                    <img src="../img/backGround/forest_single.png" class="forest" alt="forestSprite" data-forest>
+                    <img src="../img/backGround/forest_single.png" class="forest" alt="forestSprite" data-forest>
+                    <img src="../img/backGround/forest_single.png" class="forest" alt="forestSprite" data-forest>
+                    <img src="../img/backGround/forest_single.png" class="forest" alt="forestSprite" data-forest>
+                    
+                    <img src="../img/backGround/mountain_single.png" class="mountain" alt="mountainSprite" data-mountain>
+                    <img src="../img/backGround/mountain_single.png" class="mountain" alt="mountainSprite" data-mountain>
+                    <img src="../img/backGround/mountain_single.png" class="mountain" alt="mountainSprite" data-mountain>
+    
+                    <!-- <p class="binary-ground" data-binary-ground></p>
+                    <p class="binary-ground" data-binary-ground></p> -->
+                    <img src="../img/fox/stationary.png" class="dino" data-dino>
+                </div>
+            </section>
+
+        </div>
     </main>
     <footer class="w-full flex justify-center bg-slate-300">
         <div class="w-full max-w-[1240px] py-4 flex justify-center">
