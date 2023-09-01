@@ -22,7 +22,7 @@ function setElem(elemsArr, elemWidthInCSS) {
     let leftValue = 0
     elemsArr.forEach((el) => {
         setCustomProperty(el, '--left', leftValue)
-        leftValue += elemWidthInCSS
+        leftValue += elemWidthInCSS 
     });
 
     //ini diatas buat ngelooping tiap elemen html, terus bakal kasih --left property di cssnya untuk dimulai dari 0, yang tiap loopign bakal di increment dengan lebar yang udh ditentuin di css.

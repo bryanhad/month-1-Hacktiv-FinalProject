@@ -50,7 +50,7 @@ function spawnCloud() {
 
    const cloud = document.createElement('img')
    cloud.dataset.cloud = true
-   cloud.src = `../img/cloud/${cloudFrame}.png`
+   cloud.src = `src/img/cloud/${cloudFrame}.png`
    cloud.style.width = 'min-content'
    cloud.alt = 'cloudSprite'
    cloud.classList.add('cloud')

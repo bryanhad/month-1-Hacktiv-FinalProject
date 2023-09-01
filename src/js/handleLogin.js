@@ -16,10 +16,13 @@ const handleLogin = (inputValue) => {
       default:
          break
    }
-   if (msg) showModal(msg)
+   if (msg){ alert(msg)} else {
 
-   localStorage.setItem('username', inputValue)
-   location.href = 'mainGame.html'
+       localStorage.setItem('username', inputValue)
+       location.href = './src/pages/mainGame.html'
+       console.log('masoek')
+   }
+
 }
 
 loginForm.addEventListener('submit', (e) => {
